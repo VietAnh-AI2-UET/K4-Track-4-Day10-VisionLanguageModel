@@ -1,5 +1,5 @@
-Họ tên: <điền họ tên>
-`dataset_version`: <điền, lấy từ data/splits/meta.json>
+Họ tên: **Bùi Việt Anh**
+`dataset_version`: `d10-21e4070301`
 
 ## Bảng tổng hợp (số của bạn, lấy từ `report/evidence/*.json`)
 
@@ -14,7 +14,16 @@ Họ tên: <điền họ tên>
 ## 10 câu hỏi (trả lời bằng **số của bạn**, không chép lại tài liệu)
 
 ### Câu 1 — Kiến trúc: ViT, projector và LLM của Qwen3-VL-4B có bao nhiêu tham số mỗi khối, và E1/E2/E3 mỗi cái cập nhật khối nào?
-<điền>
+
+- Số lượng tham số của Qwen3-VL-4B:
+    - ViT: ~306 triệu.
+    - Projector: ~109 triệu, gồm merger ~27 triệu và các DeepStack merger ~82 triệu.
+    - LLM: ~4,0 tỷ. 
+    - Tổng mô hình ~4,44 tỷ.
+
+- E1 cập nhật LLM
+- E2 cập nhật LLM + Projector
+- E3 cập nhật LLM + Projector + ViT
 
 ### Câu 2 — E0: `parse_valid_rate` bằng bao nhiêu, và hai lỗi phổ biến nhất của model gốc là gì (kèm một ví dụ output thô)?
 <điền>

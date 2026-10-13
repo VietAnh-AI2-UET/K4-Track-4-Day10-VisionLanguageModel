@@ -12,3 +12,7 @@ adapter*/
 .ipynb_checkpoints/
 .pytest_cache/
 .DS_Store
+.kaggle-run/
+kaggle-results/
+kaggle_run.py
+KAGGLE.md
