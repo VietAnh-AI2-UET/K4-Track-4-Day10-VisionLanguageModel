@@ -32,13 +32,25 @@ Họ tên: **Bùi Việt Anh**
 <điền>
 
 ### Câu 4 — Mask loss: vì sao chỉ tính loss trên phần trả lời? Điều gì xảy ra nếu tính trên cả prompt và token ảnh?
-<điền>
+
+- Mục tiêu là học cách trả lời đúng JSON chứa lớp và tọa độ, nên chỉ tính loss trên phần đáp án.
+- Code gán `labels = -100` cho phần yêu cầu và token ảnh để bỏ qua chúng khi tính loss.
+- Nếu tính cả những phần này, model phải học dự đoán lại đầu vào, làm phân tán việc học đáp án và có thể giảm chất lượng.
 
 ### Câu 5 — Vì sao không thể huấn luyện đầy đủ projector nếu ViT bị lượng tử hoá 4-bit, và bạn đã xử lý thế nào? Vì sao projector phải ở float32?
-<điền>
+
+- Projector là khối chuyển thông tin ảnh sang dạng model ngôn ngữ sử dụng được. Trọng số nén 4-bit không hỗ trợ cập nhật toàn bộ trực tiếp trong cách huấn luyện đang dùng.
+- Code dùng `llm_int8_skip_modules=["visual", "lm_head"]` để giữ khối thị giác, gồm projector, ngoài phần nén 4-bit.
+- Ở E2/E3, trọng số projector được chuyển sang `float32` để cập nhật ổn định và phù hợp với `GradScaler` (công cụ điều chỉnh độ lớn khi tính cập nhật). Các phép tính vẫn có thể dùng `float16` để tiết kiệm bộ nhớ.
 
 ### Câu 6 — Split theo phiên quay: vì sao chia ngẫu nhiên sẽ cho F1 cao giả? Số ảnh và số box từng lớp ở mỗi split là bao nhiêu?
-<điền>
+
+- Các ảnh cùng phiên quay thường rất giống nhau. Chia ngẫu nhiên có thể đưa ảnh gần trùng vào cả tập học và tập kiểm tra, khiến F1 cao nhưng không phản ánh khả năng xử lý cảnh mới.
+- Chia theo phiên quay giúp mỗi phiên chỉ thuộc một tập.
+- Theo `data/splits/meta.json`, phiên bản `d10-21e4070301`, số ảnh và số box là:
+- **Train:** 1.422 ảnh; ổ gà **1.074**, vết nứt **1.750**, nắp cống **691**.
+- **Validation:** 276 ảnh; ổ gà **66**, vết nứt **470**, nắp cống **103**.
+- **Test:** 311 ảnh; ổ gà **121**, vết nứt **299**, nắp cống **163**.
 
 ### Câu 7 — So sánh E1/E2/E3: mở projector và LoRA trên ViT có đáng không (F1, CI95, VRAM, thời gian)?
 <điền>
