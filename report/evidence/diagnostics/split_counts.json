@@ -1,0 +1,26 @@
+{
+  "train": {
+    "images": 1422,
+    "boxes": {
+      "manhole": 691,
+      "pothole": 1074,
+      "crack": 1750
+    }
+  },
+  "val": {
+    "images": 276,
+    "boxes": {
+      "crack": 470,
+      "manhole": 103,
+      "pothole": 66
+    }
+  },
+  "test": {
+    "images": 311,
+    "boxes": {
+      "crack": 299,
+      "manhole": 163,
+      "pothole": 121
+    }
+  }
+}

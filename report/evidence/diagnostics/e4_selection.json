@@ -1,0 +1,9 @@
+{
+  "selected_setup": "E3",
+  "criterion": "F1 on fixed 40-image validation subset; ties prefer simpler setup",
+  "validation_f1": {
+    "E1": 0.21164021164021163,
+    "E2": 0.26943005181347146,
+    "E3": 0.3645833333333333
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "vit_without_projector": 306242560,
+  "projector": 109105152,
+  "llm_including_embeddings": 4022468096,
+  "total": 4437815808,
+  "vision_including_projector": 415347712
+}
